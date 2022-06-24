@@ -37,6 +37,8 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = score
     } else {
       document.querySelector('.message').textContent = '💥 Game Over'
+
+      document.querySelector('.score').textContent = 0
     }
   } else if (
     guess + 1 === secretNumber ||
@@ -44,19 +46,36 @@ document.querySelector('.check').addEventListener('click', function () {
     guess - 1 === secretNumber ||
     guess - 2 === secretNumber
   ) {
-    document.querySelector('.message').textContent = '🔔 Too Close'
+    if (score > 1) {
+      document.querySelector('.message').textContent = '🔔 Too Close'
 
-    score--
-    document.querySelector('.score').textContent = score
+      score--
+      document.querySelector('.score').textContent = score
+    } else {
+      document.querySelector('.message').textContent = '💥 Game Over'
+
+      document.querySelector('.score').textContent = 0
+    }
   } else if (guess > secretNumber) {
-    document.querySelector('.message').textContent = '⬆️ Too High!'
+    if (score > 1) {
+      document.querySelector('.message').textContent = '⬆️ Too High!'
 
-    score--
-    document.querySelector('.score').textContent = score
+      score--
+      document.querySelector('.score').textContent = score
+    } else {
+      document.querySelector('.message').textContent = '💥 Game Over'
+
+      document.querySelector('.score').textContent = 0
+    }
   } else if (guess < secretNumber) {
-    document.querySelector('.message').textContent = '⬇️ Too Low!'
+    if (score > 1) {
+      document.querySelector('.message').textContent = '⬇️ Too Low!'
 
-    score--
-    document.querySelector('.score').textContent = score
+      score--
+      document.querySelector('.score').textContent = score
+    } else {
+      document.querySelector('.message').textContent = '💥 Game Over'
+      ocument.querySelector('.score').textContent = 0
+    }
   }
 })

@@ -8,6 +8,10 @@ let score = 10
 let highscore = 0
 let life = 3
 
+// Função para refatorar
+const displayMessage = message =>
+  (document.querySelector('.message').textContent = message)
+
 // É um metodo de evento para alterar o .check ao usar o argumento "clicar (click)"
 // A função vai executar uma ação após o click
 document.querySelector('.check').addEventListener('click', function () {
@@ -18,12 +22,11 @@ document.querySelector('.check').addEventListener('click', function () {
 
   // Quando o número for zero
   if (!guess) {
-    document.querySelector('.message').textContent = '⛔ No number!'
+    displayMessage('⛔ No number!')
 
     // Quando o jogador ganha
   } else if (guess === secretNumber) {
-    document.querySelector('.message').textContent = '🎉 Correct Number!'
-
+    displayMessage('🎉 Correct Number!')
     document.querySelector('.number').textContent = secretNumber
     console.log(secretNumber)
 
@@ -40,73 +43,80 @@ document.querySelector('.check').addEventListener('click', function () {
     // Somente numeros de 1 a 50 são permitidos no teste
   } else if (guess > 50 || guess < 0) {
     if (score > 1) {
-      document.querySelector('.message').textContent = '😢 Between 1 and 50'
+      displayMessage('😢 Between 1 and 50')
 
       score--
       document.querySelector('.score').textContent = score
     } else if (score <= 1) {
-      document.querySelector('.message').textContent = '💔 Lost one life'
+      displayMessage('💔 Lost one life')
       document.querySelector('.score').textContent = 0
     }
 
-    // Números próximos entre 2 terão uma mensagem "too close"
+    // Números próximos entre 3 terão uma mensagem "too close"
   } else if (
-    guess + 1 === secretNumber ||
-    guess + 2 === secretNumber ||
-    guess - 1 === secretNumber ||
-    guess - 2 === secretNumber
+    // ### REFATORADO ###
+    // guess + 1 === secretNumber ||
+    // guess + 2 === secretNumber ||
+    // guess - 1 === secretNumber ||
+    // guess - 2 === secretNumber
+
+    // ### REFATORADO ###
+    guess < secretNumber + 4 &&
+    guess > secretNumber - 4
   ) {
     if (score > 1) {
-      document.querySelector('.message').textContent = '🔔 Too Close'
+      displayMessage('🔔 Too Close')
 
       score--
       document.querySelector('.score').textContent = score
     } else if (score <= 1) {
-      document.querySelector('.message').textContent = '💔 Lost one life'
+      displayMessage('💔 Lost one life')
       document.querySelector('.score').textContent = 0
     }
   }
 
-  // Números acima de 2 terão uma mensagem "too high"
-  else if (guess > secretNumber) {
+  // Números acima de 3 terão uma mensagem "too high" e abaixo de 3 "too low"
+  else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent = '⬆️ Too High!'
+      // ### REFATORADO ###
+      displayMessage(guess > secretNumber ? '⬆️ Too High!' : '⬇️ Too Low!')
 
       score--
       document.querySelector('.score').textContent = score
     } else if (score <= 1) {
-      document.querySelector('.message').textContent = '💔 Lost one life'
+      displayMessage('💔 Lost one life')
       document.querySelector('.score').textContent = 0
     }
   }
 
-  // Números abaixo de 2 terão uma mensagem "too low"
-  else if (guess < secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = '⬇️ Too Low!'
+  // ### REFATORADO ###
+  // else if (guess < secretNumber) {
+  //   if (score > 1) {
+  //     displayMessage('⬇️ Too Low!')
 
-      score--
-      document.querySelector('.score').textContent = score
-    } else if (score <= 1) {
-      document.querySelector('.message').textContent = '💔 Lost one life'
-      document.querySelector('.score').textContent = 0
-    }
-  }
+  //     score--
+  //     document.querySelector('.score').textContent = score
+  //   } else if (score <= 1) {
+  //     displayMessage('💔 Lost one life')
+  //     document.querySelector('.score').textContent = 0
+  //   }
+  // }
 })
 
 document.querySelector('.again').addEventListener('click', function () {
   // Life (Continue)
   if (score <= 1 && life == 3) {
     document.querySelector('.life3').style.color = '#ff0000'
-    document.querySelector('.message').textContent = '💕 You have 2 lifes'
+    displayMessage('💕 You have 2 lifes')
     life = 2
   } else if (score <= 1 && life == 2) {
     document.querySelector('.life2').style.color = '#ff0000'
-    document.querySelector('.message').textContent = '❤️ You have 1 life'
+    displayMessage('❤️ You have 1 life')
     life = 1
   } else if (score <= 1 && life == 1) {
     document.querySelector('.life1').style.color = '#ff0000'
-    document.querySelector('.message').textContent = '💥💥💥 Game Over 💥💥💥'
+    displayMessage('💥💥💥 Game Over 💥💥💥')
+    document.querySelector('body').style.backgroundColor = '#dd1111'
   }
 
   // Restart
@@ -114,7 +124,7 @@ document.querySelector('.again').addEventListener('click', function () {
   secretNumber = Math.trunc(Math.random() * 50) + 1
   document.querySelector('.score').textContent = score
   document.querySelector('.number').textContent = '?'
-  // document.querySelector('.message').textContent = 'Start guessing...'
+  // displayMessage('Start guessing...')
   document.querySelector('.guess').value = ''
   document.querySelector('body').style.backgroundColor = '#222'
   document.querySelector('.number').style.width = '15rem'

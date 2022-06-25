@@ -1,22 +1,22 @@
 'use strict'
 
 //Random natural numero com trunc e +1 ao final para evitar o 0(null)
-let secretNumber = Math.trunc(Math.random() * 20) + 1
+let secretNumber = Math.trunc(Math.random() * 50) + 1
 
 // Variável de estado
-let score = 20
+let score = 10
 let highscore = 0
+let life = 3
 
 // É um metodo de evento para alterar o .check ao usar o argumento "clicar (click)"
 // A função vai executar uma ação após o click
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value)
   //sempre o campo do input sempre retorna uma string
-  console.log(typeof guess)
 
   // ### Lógica ###
 
-  // Quando o numero for zero
+  // Quando o número for zero
   if (!guess) {
     document.querySelector('.message').textContent = '⛔ No number!'
 
@@ -37,15 +37,15 @@ document.querySelector('.check').addEventListener('click', function () {
       highscore = score
       document.querySelector('.highscore').textContent = highscore
     }
-    // Somente numeros de 1 a 20 são permitidos no teste
-  } else if (guess > 20 || guess < 0) {
+    // Somente numeros de 1 a 50 são permitidos no teste
+  } else if (guess > 50 || guess < 0) {
     if (score > 1) {
-      document.querySelector('.message').textContent = '😢 Between 1 and 20'
+      document.querySelector('.message').textContent = '😢 Between 1 and 50'
 
       score--
       document.querySelector('.score').textContent = score
-    } else {
-      document.querySelector('.message').textContent = '💥 Game Over'
+    } else if (score <= 1) {
+      document.querySelector('.message').textContent = '💔 Lost one life'
       document.querySelector('.score').textContent = 0
     }
 
@@ -61,21 +61,21 @@ document.querySelector('.check').addEventListener('click', function () {
 
       score--
       document.querySelector('.score').textContent = score
-    } else {
-      document.querySelector('.message').textContent = '💥 Game Over'
+    } else if (score <= 1) {
+      document.querySelector('.message').textContent = '💔 Lost one life'
       document.querySelector('.score').textContent = 0
     }
   }
 
-  // Números acima de 2 terão uma mensagem "too hith"
+  // Números acima de 2 terão uma mensagem "too high"
   else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent = '⬆️ Too High!'
 
       score--
       document.querySelector('.score').textContent = score
-    } else {
-      document.querySelector('.message').textContent = '💥 Game Over'
+    } else if (score <= 1) {
+      document.querySelector('.message').textContent = '💔 Lost one life'
       document.querySelector('.score').textContent = 0
     }
   }
@@ -87,25 +87,35 @@ document.querySelector('.check').addEventListener('click', function () {
 
       score--
       document.querySelector('.score').textContent = score
-    } else {
-      document.querySelector('.message').textContent = '💥 Game over'
+    } else if (score <= 1) {
+      document.querySelector('.message').textContent = '💔 Lost one life'
       document.querySelector('.score').textContent = 0
     }
   }
 })
 
 document.querySelector('.again').addEventListener('click', function () {
-  score = 20
-  secretNumber = Math.trunc(Math.random() * 20) + 1
+  // Life (Continue)
+  if (score <= 1 && life == 3) {
+    document.querySelector('.life3').style.color = '#ff0000'
+    document.querySelector('.message').textContent = '💕 You have 2 lifes'
+    life = 2
+  } else if (score <= 1 && life == 2) {
+    document.querySelector('.life2').style.color = '#ff0000'
+    document.querySelector('.message').textContent = '❤️ You have 1 life'
+    life = 1
+  } else if (score <= 1 && life == 1) {
+    document.querySelector('.life1').style.color = '#ff0000'
+    document.querySelector('.message').textContent = '💥💥💥 Game Over 💥💥💥'
+  }
+
+  // Restart
+  score = 10
+  secretNumber = Math.trunc(Math.random() * 50) + 1
   document.querySelector('.score').textContent = score
   document.querySelector('.number').textContent = '?'
-  document.querySelector('.message').textContent = 'Start guessing...'
+  // document.querySelector('.message').textContent = 'Start guessing...'
   document.querySelector('.guess').value = ''
   document.querySelector('body').style.backgroundColor = '#222'
   document.querySelector('.number').style.width = '15rem'
 })
-
-// if (score == 0) {
-//   document.querySelector('life1').style.color = '#ff0000'
-//   document.querySelector('.message').textContent = '💥 Lost one life'
-// }

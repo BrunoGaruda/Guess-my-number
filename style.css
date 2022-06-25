@@ -117,3 +117,17 @@ h1 {
 .label-score {
   margin-bottom: 2rem;
 }
+
+.life {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(2rem);
+  font-size: 3rem;
+}
+
+.life1,
+.life2,
+.life3 {
+  color: #fff;
+}

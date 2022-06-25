@@ -1,20 +1,11 @@
 'use strict'
 
-// // forma de manipular o css/html com o javascript
-// console.log(document.querySelector('.message').textContent)
-// document.querySelector('.message').textContent = '🎉  Correct Number!'
-
-// document.querySelector('.number').textContent = 15
-// document.querySelector('.score').textContent = 10
-
-// document.querySelector('.guess').value = 23
-// console.log(document.querySelector('.guess').value)
-
 //Random natural numero com trunc e +1 ao final para evitar o 0(null)
 let secretNumber = Math.trunc(Math.random() * 20) + 1
 
 // Variável de estado
 let score = 20
+let highscore = 0
 
 // É um metodo de evento para alterar o .check ao usar o argumento "clicar (click)"
 // A função vai executar uma ação após o click
@@ -39,9 +30,13 @@ document.querySelector('.check').addEventListener('click', function () {
     // Em JavaScript as nomenclaturas com 2 nome e ífen, sofrem o camelcase
     // As propriedades do CSS são escritas com ""
     document.querySelector('body').style.backgroundColor = '#60b347'
-
     document.querySelector('.number').style.width = '30rem'
 
+    // highscore
+    if (score > highscore) {
+      highscore = score
+      document.querySelector('.highscore').textContent = highscore
+    }
     // Somente numeros de 1 a 20 são permitidos no teste
   } else if (guess > 20 || guess < 0) {
     if (score > 1) {
@@ -51,7 +46,6 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = score
     } else {
       document.querySelector('.message').textContent = '💥 Game Over'
-
       document.querySelector('.score').textContent = 0
     }
 
@@ -69,7 +63,6 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = score
     } else {
       document.querySelector('.message').textContent = '💥 Game Over'
-
       document.querySelector('.score').textContent = 0
     }
   }
@@ -83,7 +76,6 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = score
     } else {
       document.querySelector('.message').textContent = '💥 Game Over'
-
       document.querySelector('.score').textContent = 0
     }
   }
@@ -96,7 +88,7 @@ document.querySelector('.check').addEventListener('click', function () {
       score--
       document.querySelector('.score').textContent = score
     } else {
-      document.querySelector('.message').textContent = '💥 Game Over'
+      document.querySelector('.message').textContent = '💥 Game over'
       document.querySelector('.score').textContent = 0
     }
   }
@@ -112,3 +104,8 @@ document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('body').style.backgroundColor = '#222'
   document.querySelector('.number').style.width = '15rem'
 })
+
+// if (score == 0) {
+//   document.querySelector('life1').style.color = '#ff0000'
+//   document.querySelector('.message').textContent = '💥 Lost one life'
+// }

@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
+    <!-- Obtendo icones com "https://ionic.io/ionicons" -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <title>Guess My Number!</title>
   </head>
   <body>
@@ -13,6 +22,12 @@
       <p class="between">(Between 1 and 20)</p>
       <button class="btn again">Again!</button>
       <div class="number">?</div>
+      <div class="life">
+        <h5>Life:</h2>
+        <ion-icon class="life1" name="heart"></ion-icon>
+        <ion-icon class="life2" name="heart"></ion-icon>
+        <ion-icon class="life3" name="heart"></ion-icon>
+      </div>
     </header>
     <main>
       <section class="left">
@@ -27,6 +42,7 @@
         </p>
       </section>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>

@@ -12,6 +12,7 @@ let life = 3
 const displayMessage = message =>
   (document.querySelector('.message').textContent = message)
 
+const body = document.querySelector('body')
 // É um metodo de evento para alterar o .check ao usar o argumento "clicar (click)"
 // A função vai executar uma ação após o click
 document.querySelector('.check').addEventListener('click', function () {
@@ -103,20 +104,22 @@ document.querySelector('.check').addEventListener('click', function () {
   // }
 })
 
+// Again!
 document.querySelector('.again').addEventListener('click', function () {
   // Life (Continue)
   if (score <= 1 && life == 3) {
-    document.querySelector('.life3').style.color = '#ff0000'
+    document.querySelector('.life3').style.color = '#fff'
     displayMessage('💕 You have 2 lifes')
     life = 2
   } else if (score <= 1 && life == 2) {
-    document.querySelector('.life2').style.color = '#ff0000'
+    document.querySelector('.life2').style.color = '#fff'
     displayMessage('❤️ You have 1 life')
     life = 1
   } else if (score <= 1 && life == 1) {
-    document.querySelector('.life1').style.color = '#ff0000'
+    document.querySelector('.body-2').style.backgroundColor = '#000000'
+    document.querySelector('.life1').style.color = '#fff'
+    document.querySelector('.message').classList.add('shine')
     displayMessage('💥💥💥 Game Over 💥💥💥')
-    document.querySelector('body').style.backgroundColor = '#dd1111'
   }
 
   // Restart
@@ -129,3 +132,26 @@ document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('body').style.backgroundColor = '#222'
   document.querySelector('.number').style.width = '15rem'
 })
+
+// Rules!
+const modal = document.querySelector('.modal')
+const overlay = document.querySelector('.overlay')
+const btnCloseModal = document.querySelector('.close-modal')
+const btnOpenModal = document.querySelector('.show-modal')
+
+const closeModel = function () {
+  modal.classList.add('hidden')
+  overlay.classList.add('hidden')
+}
+
+const openModel = function () {
+  modal.classList.remove('hidden')
+  overlay.classList.remove('hidden')
+}
+
+// Abrindo as regras
+btnOpenModal.addEventListener('click', openModel)
+// Fechamento no botão com a função
+btnCloseModal.addEventListener('click', closeModel)
+// Fechamento clicando fora do model (overlay) com a função
+overlay.addEventListener('click', closeModel)

@@ -17,31 +17,60 @@
     <title>Guess My Number!</title>
   </head>
   <body>
-    <header>
-      <h1>Guess My Number!</h1>
-      <p class="between">(Between 1 and 50)</p>
-      <button class="btn again">Again!</button>
-      <div class="number">?</div>
-      <div class="life">
-        <h5>Life:</h2>
-        <ion-icon class="life1" name="heart"></ion-icon>
-        <ion-icon class="life2" name="heart"></ion-icon>
-        <ion-icon class="life3" name="heart"></ion-icon>
-      </div>
-    </header>
-    <main>
-      <section class="left">
-        <input type="number" class="guess" />
-        <button class="btn check">Check!</button>
-      </section>
-      <section class="right">
-        <p class="message">Start guessing...</p>
-        <p class="label-score">💯 Score: <span class="score">10</span></p>
-        <p class="label-highscore">
-          🥇 Highscore: <span class="highscore">0</span>
-        </p>
-      </section>
-    </main>
+    <div class="body-2">
+      <header>
+        <h1>Guess My Number!</h1>
+        <p class="between">(Between 1 and 50)</p>
+        <button class="btn again">Again!</button>
+        <div class="number">?</div>
+        <div class="life">
+          <h5>Life:</h5>
+          <ion-icon class="life1" name="heart"></ion-icon>
+          <ion-icon class="life2" name="heart"></ion-icon>
+          <ion-icon class="life3" name="heart"></ion-icon>
+        </div>
+        <div class="overlay hidden"></div>
+      </header>
+      <main>
+        <section class="left">
+          <input type="number" class="guess" />
+          <button class="btn check">Check!</button>
+        </section>
+        <section class="right">
+          <p class="message">Start guessing...</p>
+          <p class="label-score">💯 Score: <span class="score">10</span></p>
+          <p class="label-highscore">
+            🥇 Highscore: <span class="highscore">0</span>
+          </p>
+        </section>
+      </main>
+
+      <!-- Rules -->
+      <footer>
+        <button class="btn show-modal shine">
+          <h5>Rules!</h5>
+        </button>
+        <div class="modal hidden">
+          <button class="close-modal">&times;</button>
+          <h2>Rules!</h2>
+          <br /><br />
+          <span>
+            • The Guess my number game works by trials, adding numbers to the
+            guess you will check and the panel will give you tips if you are far
+            or near. </span
+          ><br /><br />
+          <span>
+            • If your score becomes 0, you consume a life which will show at the
+            top of the window. </span
+          ><br /><br />
+          <span> • If you lose all lives, game over </span><br /><br />
+          <span>
+            • If you manage to find the number in less than 10 attempts, you win
+            the game and your best score will appear in "highscore"</span
+          >
+        </div>
+      </footer>
+    </div>
 
     <script src="script.js"></script>
   </body>

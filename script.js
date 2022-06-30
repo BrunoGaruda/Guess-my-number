@@ -4,7 +4,7 @@
 let secretNumber = Math.trunc(Math.random() * 50) + 1
 
 // Variável de estado
-let score = 10
+let score = 5
 let highscore = 0
 let life = 3
 
@@ -123,7 +123,7 @@ document.querySelector('.again').addEventListener('click', function () {
   }
 
   // Restart
-  score = 10
+  score = 5
   secretNumber = Math.trunc(Math.random() * 50) + 1
   document.querySelector('.score').textContent = score
   document.querySelector('.number').textContent = '?'

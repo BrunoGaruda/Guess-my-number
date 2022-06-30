@@ -22,7 +22,7 @@ O maior desafio desse projeto foi a manipulação da DOM(document object model),
 ### Video
 
 <div style="display: inline-block"  align="center"><br>
-      <img height="400em" src="./src/assets/guess-my-number.gif" align="center" alt="guess my number" >
+      <img height="400em" src="/assets/guess-my-number.gif" align="center" alt="guess my number" >
     <br><br>
 </div>
 
